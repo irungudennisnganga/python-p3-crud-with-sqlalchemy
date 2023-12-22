@@ -77,9 +77,12 @@ if __name__ == '__main__':
     print(f"New student ID is {albert_einstein.id}.")
     print(f"New student ID is {alan_turing.id}.")
     
+    # querying all students from the database
     student = session.query(Student).all()
     print(student)
     
+    # list comprehesnsion
+    # quering student's data based on the columns name only
     names = [name for name in session.query(Student.name)]
 
     print(names)
@@ -104,20 +107,20 @@ if __name__ == '__main__':
     print(oldest_student)
     
     
-    query = session.query(Student).filter(Student.name.like('%Alan%'),
-        Student.grade == 11)
+    query = session.query(Student).filter(Student.name.like('% Einstein%'),
+        Student.grade == 6)
 
     for record in query:
         print(record.name)
         
     query = session.query(
         Student).filter(
-            Student.name == "Albert Einstein")  
+            Student.name == "Albert Einstein")
         
     albert_einstein = query.first()
           
  
     session.delete(albert_einstein)
     
-    albert_einstein = query.first
+    albert_einstein = query.first()
     print(albert_einstein)
